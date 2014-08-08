@@ -1,7 +1,6 @@
 package org.shian;
 
 import org.shian.dao.JdbcDaoImpl;
-import org.shian.model.Circle;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
@@ -16,7 +15,7 @@ public class JdbcDemo {
 //		Circle circle = jdbcDaoImpl.getCircle(1);
 //		System.out.println( "Name is " + circle.getName() );
 		
-		System.out.println(jdbcDaoImpl.getCircleCount());
+		System.out.println(jdbcDaoImpl.getAllCircles().size());
 
 	}
 
