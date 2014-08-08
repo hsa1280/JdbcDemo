@@ -13,8 +13,10 @@ public class JdbcDemo {
 		
 		JdbcDaoImpl jdbcDaoImpl = ctx.getBean("jdbcDaoImpl", JdbcDaoImpl.class);
 		
-		Circle circle = jdbcDaoImpl.getCircle(1);
-		System.out.println( "Name is " + circle.getName() );
+//		Circle circle = jdbcDaoImpl.getCircle(1);
+//		System.out.println( "Name is " + circle.getName() );
+		
+		System.out.println(jdbcDaoImpl.getCircleCount());
 
 	}
 
