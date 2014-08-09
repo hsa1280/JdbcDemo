@@ -1,7 +1,5 @@
 package org.shian.dao;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
@@ -17,12 +15,12 @@ import org.springframework.stereotype.Component;
 @Component
 public class JdbcDaoImpl {
 
-	@Autowired
+
 	private DataSource dataSource;
 	
 	private JdbcTemplate jdbcTemplate;
 	
-	public Circle getCircle( int id ) {
+/*	public Circle getCircle( int id ) {
 		
 		Connection conn = null;
 		
@@ -52,7 +50,7 @@ public class JdbcDaoImpl {
 			}
 		}
 		
-	}
+	}*/
 	
 	public int getCircleCount() {
 		
@@ -88,6 +86,18 @@ public class JdbcDaoImpl {
 	@Autowired
 	public void setDataSource(DataSource dataSource) {
 		this.jdbcTemplate = new JdbcTemplate(dataSource);
+	}
+	
+	public void insert( Circle circle ) {
+		
+		String sql = "INSERT INTO CIRCLE (ID, NAME) VALUES (?, ?)";
+		jdbcTemplate.update(sql, new Object[] {circle.getId(), circle.getName() });
+	}
+	
+	public void createTriangleTable() {
+		
+		String sql = "CREATE TABLE TRIANGLE (ID INTEGER, NAME VARCHAR(50))";
+		jdbcTemplate.execute(sql);
 	}
 	
 	private static final class CircleMapper implements RowMapper<Circle> {
