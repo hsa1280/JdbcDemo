@@ -8,5 +8,6 @@
 	<classpathentry kind="lib" path="/Users/shian_mac/Downloads/commons-logging-1.2.jar"/>
 	<classpathentry kind="lib" path="/Users/shian_mac/Downloads/commons-dbcp-1.4.jar"/>
 	<classpathentry kind="lib" path="/Users/shian_mac/Downloads/commons-pool-1.6.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/Hibernate"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

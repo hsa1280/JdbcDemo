@@ -1,5 +1,6 @@
 package org.shian;
 
+import org.shian.dao.HibernateDaoImpl;
 import org.shian.dao.SimpleJdbcDaoImpl;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -18,8 +19,8 @@ public class JdbcDemo {
 //			System.out.println( circle.getId() + ", " + circle.getName() );
 //		}
 		
-		SimpleJdbcDaoImpl simpleDao = ctx.getBean("simpleJdbcDaoImpl", SimpleJdbcDaoImpl.class);
-		System.out.println(simpleDao.getCircleCount());
+		HibernateDaoImpl dao = ctx.getBean("hibernateDaoImpl", HibernateDaoImpl.class);
+		System.out.println(dao.getCircleCount());
 
 
 	}
