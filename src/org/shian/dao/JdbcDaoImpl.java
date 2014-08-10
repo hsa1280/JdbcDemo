@@ -2,7 +2,9 @@ package org.shian.dao;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.sql.DataSource;
 
@@ -10,6 +12,7 @@ import org.shian.model.Circle;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -19,6 +22,8 @@ public class JdbcDaoImpl {
 	private DataSource dataSource;
 	
 	private JdbcTemplate jdbcTemplate;
+	
+	private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
 	
 /*	public Circle getCircle( int id ) {
 		
@@ -86,12 +91,26 @@ public class JdbcDaoImpl {
 	@Autowired
 	public void setDataSource(DataSource dataSource) {
 		this.jdbcTemplate = new JdbcTemplate(dataSource);
+		this.namedParameterJdbcTemplate = new NamedParameterJdbcTemplate(dataSource);
 	}
+	
+//	public void insert( Circle circle ) {
+//		
+//		String sql = "INSERT INTO CIRCLE (ID, NAME) VALUES (?, ?)";
+//		jdbcTemplate.update(sql, new Object[] {circle.getId(), circle.getName() });
+//	}
 	
 	public void insert( Circle circle ) {
 		
-		String sql = "INSERT INTO CIRCLE (ID, NAME) VALUES (?, ?)";
-		jdbcTemplate.update(sql, new Object[] {circle.getId(), circle.getName() });
+		String sql = "INSERT INTO CIRCLE (ID, NAME) VALUES(:circleId, :name)";
+//		SqlParameterSource namedParameter = new MapSqlParameterSource("id", circle.getId())
+//												.addValue("name", circle.getName());
+		Map namedParameter = new HashMap();
+		/*The key name in the map needs to match with the parameter in the INSERT query*/
+		namedParameter.put("circleId", circle.getId());
+		namedParameter.put("name", circle.getName());
+		namedParameterJdbcTemplate.update(sql, namedParameter);
+		
 	}
 	
 	public void createTriangleTable() {
