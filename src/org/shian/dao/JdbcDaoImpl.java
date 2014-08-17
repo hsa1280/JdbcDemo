@@ -21,6 +21,10 @@ public class JdbcDaoImpl {
 
 	private DataSource dataSource;
 	
+	private int i;
+	
+	private int j;
+	
 	private JdbcTemplate jdbcTemplate;
 	
 	private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
